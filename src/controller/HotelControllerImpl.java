@@ -5,7 +5,7 @@ import model.Hotel;
 import model.Room;
 import model.User;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Андрей on 26.04.2017.
@@ -42,17 +42,17 @@ public class HotelControllerImpl implements HotelController {
     }
 
     @Override
-    public List<Room> getFreeRooms(Hotel hotel) {
+    public Set<Room> getFreeRooms(Hotel hotel) {
         return null;
     }
 
     @Override
-    public List<Hotel> findHotelByName(String name) {
+    public Set<Hotel> findHotelByName(String name) {
         return null;
     }
 
     @Override
-    public List<Hotel> findHotelByCity(City city) {
+    public Set<Hotel> findHotelByCity(City city) {
         return null;
     }
 
@@ -64,5 +64,10 @@ public class HotelControllerImpl implements HotelController {
     @Override
     public boolean bookCancel(Hotel hotel, Room room) {
         return false;
+    }
+
+    @Override
+    public Set<Room> getBookedRooms(Hotel hotel) {
+        return null;
     }
 }

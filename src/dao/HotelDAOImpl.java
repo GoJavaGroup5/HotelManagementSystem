@@ -1,13 +1,21 @@
-package DAO;
+package dao;
 
+import model.Data;
 import model.Hotel;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Андрей on 26.04.2017.
  */
-public class HoteDaoImpl implements HotelDao {
+public class HotelDAOImpl implements HotelDAO {
+
+    private Data data;
+
+    public HotelDAOImpl(Data data) {
+        this.data = data;
+    }
+
     @Override
     public boolean saveHotel(Hotel hotel) {
         return false;
@@ -24,7 +32,7 @@ public class HoteDaoImpl implements HotelDao {
     }
 
     @Override
-    public List<Hotel> getAllHotels() {
+    public Set<Hotel> getAllHotels() {
         return null;
     }
 }

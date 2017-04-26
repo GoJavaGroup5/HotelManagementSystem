@@ -1,14 +1,14 @@
 package model;
 
-import java.util.List;
+import java.util.Set;
 
 public class Hotel {
     private long id;
     private String name;
     private City city;
-    private List<Room> rooms;
+    private Set<Room> rooms;
 
-    public Hotel(String name, model.City city, List<Room> rooms) {
+    public Hotel(String name, City city, Set<Room> rooms) {
         this.name = name;
         this.city = city;
         this.rooms = rooms;
@@ -26,7 +26,7 @@ public class Hotel {
         return city;
     }
 
-    public List<Room> getRooms() {
+    public Set<Room> getRooms() {
         return rooms;
     }
 
@@ -38,7 +38,7 @@ public class Hotel {
         this.city = city;
     }
 
-    public void setRooms(List<model.Room> rooms) {
+    public void setRooms(Set<model.Room> rooms) {
         this.rooms = rooms;
     }
 }

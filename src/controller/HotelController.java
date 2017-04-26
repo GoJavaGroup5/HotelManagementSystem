@@ -5,21 +5,31 @@ import model.Hotel;
 import model.Room;
 import model.User;
 
-import java.util.List;
+import java.util.Set;
 
 public interface HotelController {
-boolean add(Hotel hotel );
-boolean remove(Hotel hotel);
-boolean edit(Hotel hotel);
+    
+    boolean add(Hotel hotel);
 
-boolean addRoom(Hotel hotel, Room room);
-boolean editRoom(Hotel hotel, Room room);
-boolean removeRoom(Hotel hotel, Room room);
+    boolean remove(Hotel hotel);
 
-List<Room> getFreeRooms(Hotel hotel);
-List<Hotel> findHotelByName(String name);
-List<Hotel> findHotelByCity(City city);
+    boolean edit(Hotel hotel);
 
-boolean bookRoom(Hotel hotel, Room room, User user);
-boolean bookCancel(Hotel hotel, Room room);
+    boolean addRoom(Hotel hotel, Room room);
+
+    boolean editRoom(Hotel hotel, Room room);
+
+    boolean removeRoom(Hotel hotel, Room room);
+
+    Set<Room> getFreeRooms(Hotel hotel);
+
+    Set<Room> getBookedRooms(Hotel hotel);
+
+    Set<Hotel> findHotelByName(String name);
+
+    Set<Hotel> findHotelByCity(City city);
+
+    boolean bookRoom(Hotel hotel, Room room, User user);
+
+    boolean bookCancel(Hotel hotel, Room room);
 }

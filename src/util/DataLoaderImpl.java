@@ -1,9 +1,10 @@
 package util;
 
+import model.Data;
 import model.Hotel;
 import model.User;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Андрей on 26.04.2017.
@@ -11,12 +12,17 @@ import java.util.List;
 public class DataLoaderImpl implements DataLoader {
 
     @Override
-    public List<Hotel> getHotels() {
+    public Set<Hotel> getHotels() {
         return null;
     }
 
     @Override
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return null;
+    }
+
+    @Override
+    public boolean saveData(Data data) {
+        return false;
     }
 }

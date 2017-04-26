@@ -1,12 +1,15 @@
-package DAO;
+package dao;
 
 import model.Hotel;
 
-import java.util.List;
+import java.util.Set;
 
-public interface HotelDao {
+public interface HotelDAO {
     boolean saveHotel(Hotel hotel);
+
     boolean deleteHotel(Hotel hotel);
+
     Hotel getHotelById(long id);
-    List<Hotel> getAllHotels();
+
+    Set<Hotel> getAllHotels();
 }
