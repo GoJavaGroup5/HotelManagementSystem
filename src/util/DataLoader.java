@@ -1,14 +1,18 @@
 package util;
 
+import model.Data;
 import model.Hotel;
 import model.User;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Андрей on 26.04.2017.
  */
 public interface DataLoader {
-    List<Hotel> getHotels();
-    List<User> getUsers();
+    Set<Hotel> getHotels();
+
+    Set<User> getUsers();
+
+    boolean saveData(Data data);
 }

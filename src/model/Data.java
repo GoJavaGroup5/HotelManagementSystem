@@ -1,29 +1,29 @@
 package model;
 
-import java.util.List;
+import java.util.Set;
 
 public class Data {
-    List<Hotel> hotels ;
-    List<User> users ;
+    private Set<Hotel> hotels;
+    private Set<User> users;
 
-    public Data(List<Hotel> hotels, List<User> users) {
+    public Data(Set<Hotel> hotels, Set<User> users) {
         this.hotels = hotels;
         this.users = users;
     }
 
-    public List<Hotel> getHotels() {
+    public Set<Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(List<Hotel> hotels) {
+    public void setHotels(Set<Hotel> hotels) {
         this.hotels = hotels;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 }

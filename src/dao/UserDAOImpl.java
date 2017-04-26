@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import model.Data;
 import model.User;
@@ -6,10 +6,11 @@ import model.User;
 /**
  * Created by Андрей on 26.04.2017.
  */
-public class UserDaoImpl implements UserDao {
-    Data data;
+public class UserDAOImpl implements UserDAO {
 
-    public UserDaoImpl(Data data) {
+    private Data data;
+
+    public UserDAOImpl(Data data) {
         this.data = data;
     }
 
