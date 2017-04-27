@@ -8,7 +8,9 @@ import model.User;
 import java.util.Set;
 
 public interface HotelController {
-    
+
+    getHotelById(long);
+
     boolean add(Hotel hotel);
 
     boolean remove(Hotel hotel);

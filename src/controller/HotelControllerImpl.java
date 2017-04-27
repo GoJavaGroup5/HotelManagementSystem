@@ -11,6 +11,12 @@ import java.util.Set;
  * Created by Андрей on 26.04.2017.
  */
 public class HotelControllerImpl implements HotelController {
+
+    @Override
+    public long getHotelById() {
+        return new long;
+    }
+
     @Override
     public boolean add(Hotel hotel) {
         return false;
