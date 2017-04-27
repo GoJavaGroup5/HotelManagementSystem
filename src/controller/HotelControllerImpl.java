@@ -14,7 +14,7 @@ public class HotelControllerImpl implements HotelController {
 
     @Override
     public long getHotelById() {
-        return new long;
+        return Long.parseLong(null);
     }
 
     @Override
