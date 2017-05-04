@@ -13,8 +13,8 @@ import java.util.Set;
 public class HotelControllerImpl implements HotelController {
 
     @Override
-    public long getHotelById() {
-        return Long.parseLong(null);
+    public Hotel getHotelById(Long id) {
+        return null;
     }
 
     @Override
