@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface HotelController {
 
-    Hotel getHotelById(Long id);
+    Hotel getHotelById(long id);
 
     boolean add(Hotel hotel);
 
