@@ -1,6 +1,5 @@
 package ui;
 
-import controller.HotelControllerImpl;
 import dao.UserDAOImpl;
 import model.*;
 import util.DataLoaderImpl;
@@ -95,7 +94,6 @@ public class UserInterfaceImpl {
     }
 
     class HotelHandler {
-
         void findHotelByName() {
             write("enter HotelID");
             String name = scanner.nextLine();
@@ -106,8 +104,6 @@ public class UserInterfaceImpl {
             write("free rooms im Hotel");
             hotelController.getFreeRooms(hotelController.getHotelById(hotelId)).stream().forEach(room -> write(room));
             write("make your room choice ( 0 - to go to main menu)");
-
-
         }
 
         void findHotelByCity() {
@@ -149,6 +145,8 @@ public class UserInterfaceImpl {
     class UserHandler {
         DataLoaderImpl dataLoader = new DataLoaderImpl();
         UserDAOImpl userControl = new UserDAOImpl(new Data(dataLoader.getHotels(), dataLoader.getUsers()));
+
+
 
         void userDelMenu() {
             write("enter user login or ");
