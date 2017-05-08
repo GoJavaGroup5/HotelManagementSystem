@@ -3,27 +3,28 @@ package model;
 import java.util.Set;
 
 public class Data {
-    private Set<Hotel> hotels;
-    private Set<User> users;
+
+    private static Set<Hotel> hotelsSet;
+    private static Set<User> usersSet;
 
     public Data(Set<Hotel> hotels, Set<User> users) {
-        this.hotels = hotels;
-        this.users = users;
+        hotelsSet = hotels;
+        usersSet = users;
     }
 
-    public Set<Hotel> getHotels() {
-        return hotels;
+    public static Set<Hotel> getHotels() {
+        return hotelsSet;
     }
 
-    public void setHotels(Set<Hotel> hotels) {
-        this.hotels = hotels;
+    public static void setHotels(Set<Hotel> hotels) {
+        hotelsSet = hotels;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public static Set<User> getUsers() {
+        return usersSet;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public static void setUsers(Set<User> users) {
+        usersSet = users;
     }
 }
