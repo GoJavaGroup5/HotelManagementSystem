@@ -1,31 +1,63 @@
 package dao;
 
 import model.Data;
+import model.Hotel;
 import model.User;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Андрей on 26.04.2017.
  */
 public class UserDAOImpl implements UserDAO {
 
-    private Data data;
+    private Set<User> users;
+    private Set<Hotel> hotels;
 
-    public UserDAOImpl(Data data) {
-        this.data = data;
+    public UserDAOImpl() {
+        users = new HashSet<>(Data.getUsers());
+        hotels = new HashSet<>(Data.getHotels());
     }
 
     @Override
     public boolean saveUser(User user) {
-        return false;
+
+        try {
+
+            users.add(user);
+
+        } catch (Exception e) {
+
+            return false;
+
+        }
+
+        return true;
+
     }
 
     @Override
     public boolean deleteUser(User user) {
+
+        if(users.contains(user)) {
+
+            users.remove(user);
+            Data.setUsers(users);
+            return true;
+
+        }
+
         return false;
+
     }
 
     @Override
     public User getUser(String login) {
-        return null;
+//        if(users != null && users.stream().filter(user -> user.getLogin().equals(login)) != null) {
+//            return users.stream().filter(login::equals).findFirst().get();
+//        }
+        return users.stream().filter(user -> user.getLogin().equals(login)).findFirst().get();
     }
+
 }

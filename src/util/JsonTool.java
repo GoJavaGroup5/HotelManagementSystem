@@ -3,12 +3,12 @@ package util;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+
 import model.Hotel;
 import model.User;
 
-import com.google.gson.Gson;
-
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -18,35 +18,16 @@ import java.util.Set;
  */
 public class JsonTool {
 
-    public JsonTool() {
-//        preparePropertyAccess();
-    }
-
-//    private Properties property = new Properties(); // to get properties
-
-//    private String hDB, h, hName, hCity, hRL;       // markers for Hotel's fields ID/name/city
-//    private String r, rN, rAv, rUser;               // markers for Room's fields number/available/user
-//    private String uDB, u, uName, uLogin, uPass;         // markers for User's fields name/login/password
+    Set<Hotel> hotelsSet;
+    Set<User> usersSet;
 
     public String generateJSON(Set<User> users, Set<Hotel> hotels) {
 
         // json will include Set<User> and Set<Hotel>
 
         Gson gson = new Gson();
-//        hotels.stream().forEach(hotel -> {
-//            str.append(hotel.getName());
-//            str.append(hotel.getCity());
-//            str.append(hotel.getRooms().stream().forEach(room -> new StringBuilder().append(room.getNumber())));
-//        });
 
-        // Json string with object description for Set<Hotel> (it's fields and Set<Room> inside with it's fields)
-//        str = gson.toJson(hotels);
-//        str += "\n";
-
-        // ...and object with Set<User> (with it's fields)
-//        str += gson.toJson(users);
         JsonObject hotelMS_JO = new JsonObject();
-
         JsonObject usersDB_JO = new JsonObject();
         JsonObject hotelsDB_JO = new JsonObject();
 
@@ -88,45 +69,17 @@ public class JsonTool {
         return gson.toJson(hotelMS_JO);
     }
 
-    public Map<Set<Hotel>, Set<User>> parseJSON(String str) {
+    public void parseJSON(String jsonString) {
 
-        String hotels = str.substring(0, str.indexOf("\n") - 1);
-        String users = str.substring(str.indexOf("\n"));
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(jsonString);
+        JsonObject hotelMS_JO = jsonElement.getAsJsonObject();
 
-        JsonParser parser = new JsonParser();
-        JsonElement jsonElement = parser.parse(hotels);
-        JsonObject rootObject = jsonElement.getAsJsonObject();
+        Gson gson = new Gson();
 
-        Set<Hotel> hotelsSet;
-        Set<User> usersSet;
-
-        return null; //new HashMap<hotelsSet, usersSet>;
-    }
-
-    /**
-     * The {@code preparePropertyAccess} method preparing fields to parse JSON-data
-     * with correct signature using data from config.properties file.
-     */
-
-    private void preparePropertyAccess() {
-
-//        hDB = property.getProperty("hotels.DB");
-//        h = property.getProperty("hotel");
-//        hName = property.getProperty("hotel.name");
-//        hCity = property.getProperty("hotel.city");
-//        hRL = property.getProperty("hotel.rooms");
-
-//        r = property.getProperty("room");
-//        rN = property.getProperty("room.number");
-//        rAv = property.getProperty("room.available");
-//        rUser = property.getProperty("room.user");
-
-//        uDB = property.getProperty("users.DB");
-//        u = property.getProperty("user");
-//        uName = property.getProperty("user.name");
-//        uLogin = property.getProperty("user.login");
-//        uPass = property.getProperty("user.pass");
-
+        usersSet = gson.fromJson(hotelMS_JO.get(HMSprop.USERS_DB.toString()), new TypeToken<Set<User>>(){}.getType());
+        hotelsSet = gson.fromJson(hotelMS_JO.get(HMSprop.HOTELS_DB.toString()), new TypeToken<Set<Hotel>>(){}.getType());
+        //hotelMS_JO.get(HMSprop.HOTELS_DB.toString()).getAsJsonObject().entrySet().stream().forEach();
     }
 
 }
