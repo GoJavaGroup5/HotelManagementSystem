@@ -9,8 +9,6 @@ import java.util.Set;
  * Created by Андрей on 26.04.2017.
  */
 public class HotelDAOImpl implements HotelDAO {
-    private Set<Hotel> hotels;
-    private boolean result;
 
     @Override
     public boolean saveHotel(Hotel hotel) {
