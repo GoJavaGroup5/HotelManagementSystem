@@ -57,6 +57,7 @@ public class UserDAOImpl implements UserDAO {
 //        if(users != null && users.stream().filter(user -> user.getLogin().equals(login)) != null) {
 //            return users.stream().filter(login::equals).findFirst().get();
 //        }
+
         return users.stream().filter(user -> user.getLogin().equals(login)).findFirst().get();
     }
 

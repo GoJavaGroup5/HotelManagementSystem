@@ -2,14 +2,12 @@ package model;
 
 import java.util.Set;
 
-public class Data {
+public final class Data {
 
     private static Set<Hotel> hotelsSet;
     private static Set<User> usersSet;
 
-    public Data(Set<Hotel> hotels, Set<User> users) {
-        hotelsSet = hotels;
-        usersSet = users;
+    private Data() {
     }
 
     public static Set<Hotel> getHotels() {

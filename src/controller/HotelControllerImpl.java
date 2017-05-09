@@ -17,7 +17,7 @@ public class HotelControllerImpl implements HotelController {
      * @param hotelDAO @see HotelDAO
      */
     DataLoader dataLoader = new DataLoaderImpl();
-    HotelDAO hotelDAO = new HotelDAOImpl(new Data(dataLoader.getHotels(), dataLoader.getUsers()));
+    HotelDAO hotelDAO = new HotelDAOImpl();
     Set<Hotel> hotels = hotelDAO.getAllHotels();
 
     /**
@@ -27,7 +27,9 @@ public class HotelControllerImpl implements HotelController {
      * @return Hotel
      */
     public Hotel getHotelById(long id) {
+
         return (Hotel) hotels.stream().filter(h -> h.getId() == id);
+
     }
 
     /**
