@@ -1,13 +1,10 @@
 package group5.hotelms.controller;
 
+import group5.hotelms.dao.HotelDAO;
+import group5.hotelms.dao.HotelDAOImpl;
 import group5.hotelms.dao.UserDAO;
 import group5.hotelms.dao.UserDAOImpl;
-import group5.hotelms.model.Data;
-import group5.hotelms.model.Hotel;
 import group5.hotelms.model.User;
-
-import java.util.HashSet;
-import java.util.Set;
 
 
 /**
@@ -17,8 +14,8 @@ public class UserControllerImpl implements UserController {
 
 
     private UserDAO userDAO = new UserDAOImpl();
-    private Set<Hotel> hotels = new HashSet<>();
-    private Set<User> users = new HashSet<>();
+    private HotelDAO hotelDAO = new HotelDAOImpl();
+
 
     /**
      * Save the user if it is not present in the database.
@@ -30,10 +27,7 @@ public class UserControllerImpl implements UserController {
 
     public boolean register(User user) {
 
-        users = Data.getUsers();
-
-        if (users.stream().noneMatch(t -> t.equals(user))) {
-
+        if (userDAO.getUser(user.getLogin()) == null) {
 
             return userDAO.saveUser(user);
         }
@@ -50,13 +44,11 @@ public class UserControllerImpl implements UserController {
 
     public boolean remove(User user) {
 
-        hotels = Data.getHotels();
-        users = Data.getUsers();
+        boolean roomsBookedByUser = hotelDAO.getAllHotels().stream()
+                .filter(h -> h.getRooms().stream()
+                        .anyMatch(r -> r.getUser().equals(user)))!=null;
 
-        Set<Hotel> hotelsWithUser = (Set<Hotel>) hotels.stream().filter(h -> h.getRooms().stream().anyMatch(r -> r.getUser().getLogin().equals(user.getLogin())));
-
-        if ((userDAO.getUser(user.getLogin())==null) || users.stream().noneMatch(t -> t.equals(user))) {
-
+        if ((userDAO.getUser(user.getLogin()) == null) || roomsBookedByUser) {
 
             return false;
         }
@@ -73,15 +65,11 @@ public class UserControllerImpl implements UserController {
 
     public boolean edit(User user) {
 
-        users = Data.getUsers();
-
-        if (users.stream().anyMatch(t -> t.equals(user))) {
-
+        if (userDAO.getUser(user.getLogin()) != null) {
 
             return userDAO.saveUser(user);
         }
         return false;
-
 
     }
 }
