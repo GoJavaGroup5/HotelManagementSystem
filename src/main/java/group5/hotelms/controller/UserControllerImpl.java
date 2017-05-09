@@ -1,7 +1,5 @@
 package group5.hotelms.controller;
 
-import group5.hotelms.dao.HotelDAO;
-import group5.hotelms.dao.HotelDAOImpl;
 import group5.hotelms.dao.UserDAO;
 import group5.hotelms.dao.UserDAOImpl;
 import group5.hotelms.model.Data;
@@ -13,15 +11,14 @@ import java.util.Set;
 
 
 /**
- * Author by Svetlana Kahanets on 03.05.2017.
+ * @author by Svetlana Kahanets on 03.05.2017.
  */
 public class UserControllerImpl implements UserController {
 
 
     private UserDAO userDAO = new UserDAOImpl();
-    private HotelDAO hotelDAO = new HotelDAOImpl();
-    private Set<Hotel> hotels = hotelDAO.getAllHotels();
-    private Set<User> users = new HashSet<>(Data.getUsers());
+    private Set<Hotel> hotels = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 
     /**
      * Save the user if it is not present in the database.
@@ -32,6 +29,8 @@ public class UserControllerImpl implements UserController {
 
 
     public boolean register(User user) {
+
+        users = Data.getUsers();
 
         if (users.stream().noneMatch(t -> t.equals(user))) {
 
@@ -51,9 +50,12 @@ public class UserControllerImpl implements UserController {
 
     public boolean remove(User user) {
 
+        hotels = Data.getHotels();
+        users = Data.getUsers();
+
         Set<Hotel> hotelsWithUser = (Set<Hotel>) hotels.stream().filter(h -> h.getRooms().stream().anyMatch(r -> r.getUser().getLogin().equals(user.getLogin())));
 
-        if (!hotelsWithUser.isEmpty() || users.stream().noneMatch(t -> t.equals(user))) {
+        if ((userDAO.getUser(user.getLogin())==null) || users.stream().noneMatch(t -> t.equals(user))) {
 
 
             return false;
@@ -70,6 +72,8 @@ public class UserControllerImpl implements UserController {
      */
 
     public boolean edit(User user) {
+
+        users = Data.getUsers();
 
         if (users.stream().anyMatch(t -> t.equals(user))) {
 
