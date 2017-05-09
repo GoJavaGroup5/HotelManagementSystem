@@ -6,7 +6,9 @@ import model.*;
 import util.DataLoader;
 import util.DataLoaderImpl;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This class is created to get access to Hotels and Rooms
@@ -18,7 +20,7 @@ public class HotelControllerImpl implements HotelController {
      */
     DataLoader dataLoader = new DataLoaderImpl();
     HotelDAO hotelDAO = new HotelDAOImpl();
-    Set<Hotel> hotels = hotelDAO.getAllHotels();
+    Set<Hotel> hotels = new HashSet<Hotel>();
 
     /**
      * this method gets Hotel by id
@@ -28,7 +30,7 @@ public class HotelControllerImpl implements HotelController {
      */
     public Hotel getHotelById(long id) {
 
-        return (Hotel) hotels.stream().filter(h -> h.getId() == id);
+        return hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().get();
 
     }
 
@@ -74,6 +76,7 @@ public class HotelControllerImpl implements HotelController {
         try {
             rooms.add(room);
             hotel.setRooms(rooms);
+            add(hotel);
             return true;
         } catch (Exception e) {
             return false;
@@ -92,6 +95,7 @@ public class HotelControllerImpl implements HotelController {
             Set<Room> rooms = hotel.getRooms();
             rooms.add(room);
             hotel.setRooms(rooms);
+            add(hotel);
             return true;
         } catch (Exception e) {
             return false;
@@ -107,9 +111,10 @@ public class HotelControllerImpl implements HotelController {
      */
     public boolean removeRoom(Hotel hotel, Room room) {
         Set<Room> rooms = hotel.getRooms();
-        boolean result = rooms.remove(room);
-        if (result) hotel.setRooms(rooms);
-        return result;
+        hotel.getRooms().remove(room);
+        hotel.setRooms(rooms);
+        add(hotel);
+        return add(hotel);
     }
 
     /**
@@ -117,7 +122,7 @@ public class HotelControllerImpl implements HotelController {
      * @return Set of free rooms in the hotel
      */
     public Set<Room> getFreeRooms(Hotel hotel) {
-        return (Set<Room>) hotel.getRooms().stream().filter(r -> r.isAvailable());
+        return hotel.getRooms().stream().filter(r -> r.isAvailable()).collect(Collectors.toSet());
     }
 
     /**
@@ -125,7 +130,7 @@ public class HotelControllerImpl implements HotelController {
      * @return Set of Hotels named by name param
      */
     public Set<Hotel> findHotelByName(String name) {
-        return (Set<Hotel>) hotels.stream().filter(h -> h.getName() == name);
+        return hotelDAO.getAllHotels().stream().filter(h -> h.getName() == name).collect(Collectors.toSet());
     }
 
     /**
@@ -134,7 +139,7 @@ public class HotelControllerImpl implements HotelController {
      */
     public Set<Hotel> findHotelByCity(City city) {
 
-        return (Set<Hotel>) hotels.stream().filter(h -> h.getCity() == city);
+        return hotelDAO.getAllHotels().stream().filter(h -> h.getCity() == city).collect(Collectors.toSet());
     }
 
     /**
@@ -185,7 +190,6 @@ public class HotelControllerImpl implements HotelController {
      * @return Set of booked Rooms
      */
     public Set<Room> getBookedRooms(Hotel hotel) {
-        return (Set<Room>) hotel.getRooms().stream().filter(r -> !r.isAvailable());
-
+        return hotel.getRooms().stream().filter(r -> !r.isAvailable()).collect(Collectors.toSet());
     }
 }
