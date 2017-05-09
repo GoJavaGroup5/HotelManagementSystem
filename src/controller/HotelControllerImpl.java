@@ -2,11 +2,13 @@ package controller;
 
 import dao.HotelDAO;
 import dao.HotelDAOImpl;
-import model.*;
+import model.City;
+import model.Hotel;
+import model.Room;
+import model.User;
 import util.DataLoader;
 import util.DataLoaderImpl;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,7 +22,6 @@ public class HotelControllerImpl implements HotelController {
      */
     DataLoader dataLoader = new DataLoaderImpl();
     HotelDAO hotelDAO = new HotelDAOImpl();
-    Set<Hotel> hotels = new HashSet<Hotel>();
 
     /**
      * this method gets Hotel by id
