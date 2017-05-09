@@ -5,7 +5,7 @@ package group5.hotelms.util;
  */
 public final class IdGenerator {
 
-    private static long idCount = 1;
+    private static long idCount = 0;
 
     private IdGenerator() {
     }
@@ -14,6 +14,6 @@ public final class IdGenerator {
     public static long generateId() {
 
 
-        return idCount++;
+        return ++idCount;
     }
 }
