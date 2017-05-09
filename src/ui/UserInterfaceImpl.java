@@ -1,5 +1,7 @@
 package ui;
 
+import controller.HotelController;
+import controller.HotelControllerImpl;
 import dao.UserDAOImpl;
 import model.*;
 import util.DataLoaderImpl;
@@ -17,7 +19,7 @@ public class UserInterfaceImpl {
     User currentUser = null;
     int currentRoom = 0;
 
-    HotelControllerImpl hotelController = new HotelControllerImpl();
+    HotelController hotelController = new HotelControllerImpl();
 
     public static Scanner scanner = new Scanner(System.in);
 
@@ -144,7 +146,7 @@ public class UserInterfaceImpl {
 
     class UserHandler {
         DataLoaderImpl dataLoader = new DataLoaderImpl();
-        UserDAOImpl userControl = new UserDAOImpl(new Data(dataLoader.getHotels(), dataLoader.getUsers()));
+        UserDAOImpl userControl = new UserDAOImpl();
 
 
 

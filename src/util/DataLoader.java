@@ -1,6 +1,5 @@
 package util;
 
-import model.Data;
 import model.Hotel;
 import model.User;
 
@@ -14,5 +13,5 @@ public interface DataLoader {
 
     Set<User> getUsers();
 
-    boolean saveData(Data data);
+    boolean saveData();
 }

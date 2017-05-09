@@ -22,7 +22,7 @@ public class DataLoaderImpl implements DataLoader {
     }
 
     @Override
-    public boolean saveData(Data data) {
+    public boolean saveData() {
         return false;
     }
 }
