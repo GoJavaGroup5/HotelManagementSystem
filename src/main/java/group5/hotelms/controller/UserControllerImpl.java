@@ -23,25 +23,37 @@ public class UserControllerImpl implements UserController {
     private Set<Hotel> hotels = hotelDAO.getAllHotels();
     private Set<User> users = new HashSet<>(Data.getUsers());
 
-
-    public boolean register(User user) {
-
-
-        return userDAO.saveUser(user);
-    }
-
     /**
-     * Delete user, check the room reservation by the user. Check the presence of the user in the database
+     * Save the user if it is not present in the database.
      *
      * @param user
      * @return
      */
 
+
+    public boolean register(User user) {
+
+        if (users.stream().noneMatch(t -> t.equals(user))) {
+
+
+            return userDAO.saveUser(user);
+        }
+        return false;
+    }
+
+    /**
+     * Delete user, check the room reservation by the user. Check the presence of the user in the database.
+     *
+     * @param user
+     * @return
+     */
+
+
     public boolean remove(User user) {
 
         Set<Hotel> hotelsWithUser = (Set<Hotel>) hotels.stream().filter(h -> h.getRooms().stream().anyMatch(r -> r.getUser().getLogin().equals(user.getLogin())));
 
-        if (!hotelsWithUser.isEmpty() || !users.stream().equals(user)) {
+        if (!hotelsWithUser.isEmpty() || users.stream().noneMatch(t -> t.equals(user))) {
 
 
             return false;
@@ -50,10 +62,22 @@ public class UserControllerImpl implements UserController {
 
     }
 
+    /**
+     * Edit the user if it is present in the database.
+     *
+     * @param user
+     * @return
+     */
 
     public boolean edit(User user) {
 
+        if (users.stream().anyMatch(t -> t.equals(user))) {
 
-        return userDAO.saveUser(user);
+
+            return userDAO.saveUser(user);
+        }
+        return false;
+
+
     }
 }
