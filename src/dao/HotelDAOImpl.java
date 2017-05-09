@@ -14,24 +14,17 @@ public class HotelDAOImpl implements HotelDAO {
 
     @Override
     public boolean saveHotel(Hotel hotel) {
-
-        hotels = Data.getHotels();
-        result = hotels.add(hotel);
-        Data.setHotels(hotels);
-        return result;
+        return Data.getHotels().add(hotel);
     }
 
     @Override
     public boolean deleteHotel(Hotel hotel) {
-        hotels = Data.getHotels();
-        result = hotels.remove(hotel);
-        return result;
+        return Data.getHotels().remove(hotel);
     }
 
     @Override
     public Hotel getHotelById(long id) {
-        hotels = Data.getHotels();
-        return (Hotel) hotels.stream().filter(h -> h.getId() == id);
+        return Data.getHotels().stream().filter(h -> h.getId() == id).findFirst().get();
     }
 
     @Override
