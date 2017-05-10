@@ -7,6 +7,7 @@ public class Room {
 
     public Room(int number) {
         this.number = number;
+        available = true;
     }
 
     public int getNumber() {
@@ -29,6 +30,7 @@ public class Room {
     public void setUser(User user) {
         //TODO:remove available from gui
         this.user = user;
+        available = user == null;
     }
 
     @Override
