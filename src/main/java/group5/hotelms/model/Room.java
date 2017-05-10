@@ -36,5 +36,27 @@ public class Room {
         this.user = user;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Room room = (Room) o;
+
+        return number == room.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return number;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "number=" + number +
+                ", available=" + available +
+                ", user=" + user +
+                '}';
+    }
 }
