@@ -1,8 +1,8 @@
-package gui;
+package group5.hotelms.gui;
 
-import controller.UserController;
-import controller.UserControllerImpl;
-import model.User;
+import group5.hotelms.controller.UserController;
+import group5.hotelms.controller.UserControllerImpl;
+import group5.hotelms.model.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

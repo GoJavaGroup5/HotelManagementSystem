@@ -1,4 +1,4 @@
-package ui;
+package group5.hotelms.ui;
 
 /**
  * Created by Андрей on 27.04.2017.

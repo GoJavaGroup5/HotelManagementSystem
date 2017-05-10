@@ -1,10 +1,10 @@
-package gui;
+package group5.hotelms.gui;
 
-import controller.HotelController;
-import controller.HotelControllerImpl;
-import model.City;
-import model.Hotel;
-import model.Room;
+import group5.hotelms.controller.HotelController;
+import group5.hotelms.controller.HotelControllerImpl;
+import group5.hotelms.model.City;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.Room;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

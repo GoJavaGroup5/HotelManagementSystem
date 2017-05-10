@@ -1,10 +1,14 @@
-package ui;
+package group5.hotelms.ui;
 
-import controller.HotelController;
-import controller.HotelControllerImpl;
-import dao.UserDAOImpl;
-import model.*;
-import util.DataLoaderImpl;
+
+import group5.hotelms.controller.HotelController;
+import group5.hotelms.controller.HotelControllerImpl;
+import group5.hotelms.dao.UserDAOImpl;
+import group5.hotelms.model.City;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.Room;
+import group5.hotelms.model.User;
+import group5.hotelms.util.DataLoaderImpl;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -147,7 +151,6 @@ public class UserInterfaceImpl {
     class UserHandler {
         DataLoaderImpl dataLoader = new DataLoaderImpl();
         UserDAOImpl userControl = new UserDAOImpl();
-
 
 
         void userDelMenu() {

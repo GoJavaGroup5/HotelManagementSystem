@@ -10,7 +10,6 @@ public class Room {
 
     public Room(int number) {
         this.number = number;
-        this.available = true;
     }
 
     public int getNumber() {
@@ -37,10 +36,5 @@ public class Room {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "| <" + number +
-                "> " + (user == null ? "empty" : "used by " + user.getName()) +
-                " |";
-    }
+
 }

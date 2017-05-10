@@ -1,7 +1,6 @@
 package group5.hotelms.model;
 
 public class User {
-
     private String name;
     private final String login;
     private String pass;
@@ -30,31 +29,5 @@ public class User {
 
     public void setPass(String pass) {
         this.pass = pass;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return getLogin().equals(user.getLogin());
-    }
-
-    @Override
-    public int hashCode() {
-        return getLogin().hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "U{ " + name +
-                " , l=" + login +
-                '}';
-    }
-
-    public User get() {
-        return this;
     }
 }
