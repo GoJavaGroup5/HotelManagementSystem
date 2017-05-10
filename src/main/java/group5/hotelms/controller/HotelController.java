@@ -1,6 +1,5 @@
 package group5.hotelms.controller;
 
-
 import group5.hotelms.model.City;
 import group5.hotelms.model.Hotel;
 import group5.hotelms.model.Room;

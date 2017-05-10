@@ -30,9 +30,7 @@ public class HotelControllerImpl implements HotelController {
      * @return Hotel
      */
     public Hotel getHotelById(long id) {
-
         return hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().get();
-
     }
 
     /**
@@ -73,15 +71,8 @@ public class HotelControllerImpl implements HotelController {
      * @return the boolean result of adding Room
      */
     public boolean addRoom(Hotel hotel, Room room) {
-        Set<Room> rooms = hotel.getRooms();
-        try {
-            rooms.add(room);
-            hotel.setRooms(rooms);
-            add(hotel);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        if (hotel.getRooms().contains(room)) return false;
+        return hotel.getRooms().add(room);
     }
 
     /**
@@ -92,15 +83,8 @@ public class HotelControllerImpl implements HotelController {
      * @return
      */
     public boolean editRoom(Hotel hotel, Room room) {
-        try {
-            Set<Room> rooms = hotel.getRooms();
-            rooms.add(room);
-            hotel.setRooms(rooms);
-            add(hotel);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        if (!hotel.getRooms().contains(room)) return false;
+        return hotel.getRooms().add(room);
     }
 
     /**
@@ -111,11 +95,8 @@ public class HotelControllerImpl implements HotelController {
      * @return
      */
     public boolean removeRoom(Hotel hotel, Room room) {
-        Set<Room> rooms = hotel.getRooms();
-        hotel.getRooms().remove(room);
-        hotel.setRooms(rooms);
-        add(hotel);
-        return add(hotel);
+        if (!hotel.getRooms().contains(room)) return false;
+        return hotel.getRooms().remove(room);
     }
 
     /**
@@ -152,15 +133,8 @@ public class HotelControllerImpl implements HotelController {
      * @return the boolean result
      */
     public boolean bookRoom(Hotel hotel, Room room, User user) {
-        try {
-            room.setAvailable(false);
-            room.setUser(user);
-            Set<Room> rooms = hotel.getRooms();
-            rooms.add(room);
-            hotel.setRooms(rooms);
-        } catch (Exception e) {
-            return false;
-        }
+        if (hotel == null || room == null || user == null) return false;
+        room.setUser(user);
         return true;
     }
 
@@ -172,15 +146,9 @@ public class HotelControllerImpl implements HotelController {
      * @return boolean result of book canceling
      */
     public boolean bookCancel(Hotel hotel, Room room) {
-        try {
-            room.setAvailable(true);
-            room.setUser(null);
-            Set<Room> rooms = hotel.getRooms();
-            rooms.add(room);
-            hotel.setRooms(rooms);
-        } catch (Exception e) {
-            return false;
-        }
+
+        if (hotel == null || room == null) return false;
+        room.setUser(null);
         return true;
     }
 

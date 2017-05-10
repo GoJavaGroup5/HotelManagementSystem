@@ -1,8 +1,5 @@
 package group5.hotelms.model;
 
-/**
- * @author Andrey on 24.04.2017.
- */
 public class Room {
     private int number;
     private boolean available;
@@ -10,6 +7,7 @@ public class Room {
 
     public Room(int number) {
         this.number = number;
+        available = true;
     }
 
     public int getNumber() {
@@ -24,16 +22,15 @@ public class Room {
         return available;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
+        //TODO:remove available from gui
         this.user = user;
+        available = user == null;
     }
 
     @Override
