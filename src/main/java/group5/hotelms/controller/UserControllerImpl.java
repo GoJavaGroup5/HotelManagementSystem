@@ -6,16 +6,12 @@ import group5.hotelms.dao.UserDAO;
 import group5.hotelms.dao.UserDAOImpl;
 import group5.hotelms.model.User;
 
-
 /**
  * @author by Svetlana Kahanets on 03.05.2017.
  */
 public class UserControllerImpl implements UserController {
-
-
     private UserDAO userDAO = new UserDAOImpl();
     private HotelDAO hotelDAO = new HotelDAOImpl();
-
 
     /**
      * Save the user if it is not present in the database.
@@ -23,8 +19,6 @@ public class UserControllerImpl implements UserController {
      * @param user
      * @return
      */
-
-
     public boolean register(User user) {
 
         if (userDAO.getUser(user.getLogin()) == null) {

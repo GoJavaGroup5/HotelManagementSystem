@@ -1,14 +1,10 @@
 package group5.hotelms.dao;
 
-
 import group5.hotelms.model.Data;
 import group5.hotelms.model.Hotel;
 
 import java.util.Set;
 
-/**
- * Created by Андрей on 26.04.2017.
- */
 public class HotelDAOImpl implements HotelDAO {
 
     @Override

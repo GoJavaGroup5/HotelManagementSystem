@@ -23,7 +23,8 @@ import java.util.Set;
  * @author voksus on 09.05.2017.
  */
 public class Main {
-
+    //TODO:check todo's and proverki
+    //TODO: make tasks in trello from TODO's
 
     public static void main(String[] args) {
 
