@@ -1,11 +1,15 @@
 package group5.hotelms.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author voksus
+ */
 public final class Data {
 
-    private static Set<Hotel> hotelsSet;
-    private static Set<User> usersSet;
+    private static Set<Hotel> hotelsSet = new HashSet<>();
+    private static Set<User> usersSet = new HashSet<>();
 
     private Data() {
     }
@@ -25,4 +29,5 @@ public final class Data {
     public static void setUsers(Set<User> users) {
         usersSet = users;
     }
+
 }
