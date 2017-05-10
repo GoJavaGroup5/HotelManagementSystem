@@ -1,8 +1,8 @@
-package gui;
+package group5.hotelms.gui;
 
-import dao.UserDAO;
-import dao.UserDAOImpl;
-import model.User;
+import group5.hotelms.dao.UserDAO;
+import group5.hotelms.dao.UserDAOImpl;
+import group5.hotelms.model.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

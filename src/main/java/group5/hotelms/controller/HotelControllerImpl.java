@@ -1,13 +1,13 @@
-package controller;
+package group5.hotelms.controller;
 
-import dao.HotelDAO;
-import dao.HotelDAOImpl;
-import model.City;
-import model.Hotel;
-import model.Room;
-import model.User;
-import util.DataLoader;
-import util.DataLoaderImpl;
+import group5.hotelms.dao.HotelDAO;
+import group5.hotelms.dao.HotelDAOImpl;
+import group5.hotelms.model.City;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.Room;
+import group5.hotelms.model.User;
+import group5.hotelms.util.DataLoader;
+import group5.hotelms.util.DataLoaderImpl;
 
 import java.util.Set;
 import java.util.stream.Collectors;

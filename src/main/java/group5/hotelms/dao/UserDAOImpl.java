@@ -1,8 +1,8 @@
-package dao;
+package group5.hotelms.dao;
 
-import model.Data;
-import model.Hotel;
-import model.User;
+import group5.hotelms.model.Data;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.User;
 
 import java.util.HashSet;
 import java.util.Set;

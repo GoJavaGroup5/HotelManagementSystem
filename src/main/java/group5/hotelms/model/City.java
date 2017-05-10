@@ -1,4 +1,4 @@
-package model;
+package group5.hotelms.model;
 
 /**
  * Created by Андрей on 24.04.2017.

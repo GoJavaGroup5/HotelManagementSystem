@@ -1,6 +1,7 @@
-package controller;
+package group5.hotelms.controller;
 
-import model.User;
+
+import group5.hotelms.model.User;
 
 public class UserControllerImpl implements UserController {
     @Override

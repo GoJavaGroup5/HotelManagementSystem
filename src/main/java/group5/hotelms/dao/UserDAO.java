@@ -1,6 +1,6 @@
-package dao;
+package group5.hotelms.dao;
 
-import model.User;
+import group5.hotelms.model.User;
 
 public interface UserDAO {
     boolean saveUser(User user);

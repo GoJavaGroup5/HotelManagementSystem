@@ -1,4 +1,4 @@
-package model;
+package group5.hotelms.model;
 
 /**
  * @author Andrey on 24.04.2017.
