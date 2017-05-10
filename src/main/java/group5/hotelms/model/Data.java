@@ -1,4 +1,4 @@
-package model;
+package group5.hotelms.model;
 
 import java.util.HashSet;
 import java.util.Set;

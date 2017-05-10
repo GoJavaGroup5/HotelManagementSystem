@@ -1,15 +1,10 @@
-package controller;
+package group5.hotelms.controller;
 
-import dao.HotelDAO;
-import dao.HotelDAOImpl;
-import dao.UserDAO;
-import dao.UserDAOImpl;
-import model.Data;
-import model.Hotel;
-import model.User;
-
-import java.util.HashSet;
-import java.util.Set;
+import group5.hotelms.dao.HotelDAO;
+import group5.hotelms.dao.HotelDAOImpl;
+import group5.hotelms.dao.UserDAO;
+import group5.hotelms.dao.UserDAOImpl;
+import group5.hotelms.model.User;
 
 /**
  * @author by Svetlana Kahanets on 03.05.2017.

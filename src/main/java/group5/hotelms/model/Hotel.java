@@ -1,4 +1,4 @@
-package model;
+package group5.hotelms.model;
 
 import java.util.Set;
 
@@ -38,11 +38,11 @@ public class Hotel {
         this.name = name;
     }
 
-    public void setCity(model.City city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
-    public void setRooms(Set<model.Room> rooms) {
+    public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
 

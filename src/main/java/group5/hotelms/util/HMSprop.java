@@ -1,4 +1,4 @@
-package util;
+package group5.hotelms.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,15 +1,15 @@
-package util;
+package group5.hotelms.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
-
-import model.Hotel;
-import model.User;
+import com.google.gson.reflect.TypeToken;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.User;
 
 import java.util.Set;
+
 
 /**
  * The {@code JsonTool} class convert HMS data to/from Json-string.

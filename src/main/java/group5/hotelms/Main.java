@@ -1,11 +1,23 @@
-import controller.*;
-import dao.*;
-import model.*;
-import util.DataLoader;
-import util.DataLoaderImpl;
+package group5.hotelms;
+
+import group5.hotelms.controller.HotelController;
+import group5.hotelms.controller.HotelControllerImpl;
+import group5.hotelms.controller.UserController;
+import group5.hotelms.controller.UserControllerImpl;
+import group5.hotelms.dao.HotelDAO;
+import group5.hotelms.dao.HotelDAOImpl;
+import group5.hotelms.dao.UserDAO;
+import group5.hotelms.dao.UserDAOImpl;
+import group5.hotelms.model.City;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.Room;
+import group5.hotelms.model.User;
+import group5.hotelms.util.DataLoader;
+import group5.hotelms.util.DataLoaderImpl;
 
 import java.util.HashSet;
 import java.util.Set;
+
 
 /**
  * @author voksus on 09.05.2017.

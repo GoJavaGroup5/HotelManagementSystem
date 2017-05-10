@@ -1,6 +1,8 @@
-package util;
+package group5.hotelms.util;
 
-import model.*;
+import group5.hotelms.model.Data;
+import group5.hotelms.model.Hotel;
+import group5.hotelms.model.User;
 
 import java.io.*;
 import java.util.Set;
