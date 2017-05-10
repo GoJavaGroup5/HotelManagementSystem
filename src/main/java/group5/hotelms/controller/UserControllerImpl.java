@@ -46,7 +46,7 @@ public class UserControllerImpl implements UserController {
 
         boolean roomsBookedByUser = hotelDAO.getAllHotels().stream()
                 .filter(h -> h.getRooms().stream()
-                        .anyMatch(r -> r.getUser().equals(user)))!=null;
+                        .anyMatch(r -> r.getUser().equals(user))) != null;
 
         if ((userDAO.getUser(user.getLogin()) == null) || roomsBookedByUser) {
 
