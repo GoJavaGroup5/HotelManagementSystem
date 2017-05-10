@@ -1,5 +1,7 @@
 package controller;
 
+import dao.HotelDAO;
+import dao.HotelDAOImpl;
 import model.City;
 import model.Hotel;
 import model.Room;
@@ -12,6 +14,8 @@ import java.util.Set;
  */
 public class HotelControllerImpl implements HotelController {
 
+    HotelDAO hotelDAO = new HotelDAOImpl();
+
     @Override
     public long getHotelById() {
         return Long.parseLong(null);
@@ -19,7 +23,12 @@ public class HotelControllerImpl implements HotelController {
 
     @Override
     public boolean add(Hotel hotel) {
-        return false;
+
+        if (hotel == null) {
+            return false;
+        }
+
+        return hotelDAO.saveHotel(hotel);
     }
 
     @Override
@@ -64,7 +73,16 @@ public class HotelControllerImpl implements HotelController {
 
     @Override
     public boolean bookRoom(Hotel hotel, Room room, User user) {
-        return false;
+        try {
+            room.setAvailable(false);
+            room.setUser(user);
+            Set<Room> rooms = hotel.getRooms();
+            rooms.add(room);
+            hotel.setRooms(rooms);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     @Override

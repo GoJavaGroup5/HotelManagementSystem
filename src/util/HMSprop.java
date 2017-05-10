@@ -14,13 +14,14 @@ public enum HMSprop {
     HOTELS_DB, HOTEL, HOTEL_NAME, HOTEL_CITY, HOTEL_ROOMS,
     ROOM, ROOM_NUMBER, ROOM_AVAILABLE, ROOM_USER,
     USERS_DB, USER, USER_NAME, USER_LOGIN, USER_PASSWORD,
-    MSG_FILE_NOT_FOUND, MSG_FILE_USING_ERROR,;
+    MSG_FILE_NOT_FOUND, MSG_FILE_USING_ERROR,TOTAL;
 
     private Properties property = new Properties();
 
     private String HMSfilename;                     // marker for Json-filename of DataBase
     private String msgFileNotFound;                 // text message to say The file was not found
     private String msgFileReadError;                // text message to say The file unable to read or store
+    private String total;                           // informs 'bout capacity of total objects
 
     private String hDB, h, hName, hCity, hRL;       // markers for Hotel's fields ID/name/city
     private String r, rN, rAv, rUser;               // markers for Room's fields number/available/user
@@ -39,6 +40,9 @@ public enum HMSprop {
                 break;
             case MSG_FILE_USING_ERROR:
                 result = msgFileReadError;
+                break;
+            case TOTAL:
+                result = total;
                 break;
             case HOTELS_DB:
                 result = hDB;
@@ -95,6 +99,7 @@ public enum HMSprop {
 
             msgFileNotFound = property.getProperty("msg.file.not.found");
             msgFileReadError = property.getProperty("msg.file.unable.to.read");
+            total = property.getProperty("count");
 
             hDB = property.getProperty("hotels.DB");
             h = property.getProperty("hotel");
@@ -121,7 +126,7 @@ public enum HMSprop {
     private void preparePropertyAccess() throws IOException {
 
         // trying to get properties for this app
-        try (FileInputStream pf = new FileInputStream("config.properties")) {
+        try (FileInputStream pf = new FileInputStream("src/config.properties")) {
 
             property.load(pf);
 

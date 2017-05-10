@@ -15,6 +15,6 @@ public interface DataLoader {
 
     Set<User> getUsers();
 
-    boolean saveData(Data data);
+    boolean saveData();
 
 }

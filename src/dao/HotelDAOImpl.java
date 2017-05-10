@@ -3,36 +3,48 @@ package dao;
 import model.Data;
 import model.Hotel;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by Андрей on 26.04.2017.
  */
 public class HotelDAOImpl implements HotelDAO {
-
-    private Data data;
-
-    public HotelDAOImpl(Data data) {
-        this.data = data;
-    }
+    private Set<Hotel> hotels;
+    private boolean result;
 
     @Override
     public boolean saveHotel(Hotel hotel) {
-        return false;
+
+        try {
+
+            Data.getHotels().add(hotel);
+
+        } catch (Exception e) {
+
+            System.err.println("Hotel can not be saved.");
+            return false;
+
+        }
+
+        return true;
     }
 
     @Override
     public boolean deleteHotel(Hotel hotel) {
-        return false;
+        hotels = Data.getHotels();
+        result = hotels.remove(hotel);
+        return result;
     }
 
     @Override
     public Hotel getHotelById(long id) {
-        return null;
+        hotels = Data.getHotels();
+        return hotels.stream().filter(hotel -> hotel.getId() == id).findFirst().get();   //.stream().filter(h -> h.getId() == id);
     }
 
     @Override
     public Set<Hotel> getAllHotels() {
-        return null;
+        return Data.getHotels();
     }
 }

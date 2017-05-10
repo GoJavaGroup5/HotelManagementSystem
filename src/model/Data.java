@@ -1,15 +1,17 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class Data {
+/**
+ * @author voksus
+ */
+public final class Data {
 
-    private static Set<Hotel> hotelsSet;
-    private static Set<User> usersSet;
+    private static Set<Hotel> hotelsSet = new HashSet<>();
+    private static Set<User> usersSet = new HashSet<>();
 
-    public Data(Set<Hotel> hotels, Set<User> users) {
-        hotelsSet = hotels;
-        usersSet = users;
+    private Data() {
     }
 
     public static Set<Hotel> getHotels() {
@@ -27,4 +29,5 @@ public class Data {
     public static void setUsers(Set<User> users) {
         usersSet = users;
     }
+
 }

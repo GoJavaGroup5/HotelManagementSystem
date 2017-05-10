@@ -47,4 +47,14 @@ public class User {
         return getLogin().hashCode();
     }
 
+    @Override
+    public String toString() {
+        return "U{ " + name +
+                " , l=" + login +
+                '}';
+    }
+
+    public User get() {
+        return this;
+    }
 }

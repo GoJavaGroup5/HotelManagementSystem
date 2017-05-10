@@ -14,29 +14,22 @@ import java.util.Set;
  */
 public class DataLoaderImpl implements DataLoader {
 
-    private static JsonTool jsonTool;
+//    private static JsonTool jsonTool;
     private static String jsonString;
-
-    private Hotel hotel;
-
-    private Set<Hotel> hotels;                          // local collection to store hotels
-    private Room room;
-
-    private Set<Room> rooms;                            // local collection to store rooms
-    private User user;
-
-    private Set<User> users;                            // local collection to store users and reserved room
 
     public DataLoaderImpl() {
 
         try {
             jsonString = loadDataFromFile();
         } catch (IOException e) {
+            System.err.println("Something wrong...");
             e.printStackTrace();
         }
 
-        jsonTool.parseJSON(jsonString);
-//        data = new Data(getHotels(), getUsers());
+        System.out.println("[" + jsonString + "]");
+        if (!"".equals(jsonString)) {
+            JsonTool.parseJSON(jsonString);
+        }
 
     }
 
@@ -47,7 +40,7 @@ public class DataLoaderImpl implements DataLoader {
      */
     private String loadDataFromFile() throws IOException {
 
-        String result = null;
+        String result;
 
         // trying to load data from existing file
         try (FileInputStream fis = new FileInputStream(HMSprop.HMS_FILENAME.toString());
@@ -55,10 +48,19 @@ public class DataLoaderImpl implements DataLoader {
              BufferedReader br = new BufferedReader(isr)) {
 
             result = br.readLine();
+            result = result == null ? "" : result;
 
         } catch (FileNotFoundException e) {
+            try (FileOutputStream fos = new FileOutputStream(HMSprop.HMS_FILENAME.toString());
+                 OutputStreamWriter osw = new OutputStreamWriter(fos);
+                 BufferedWriter bw = new BufferedWriter(osw)) {
+                bw.flush();
+            }
+//            saveData();
+            System.err.println(HMSprop.MSG_FILE_NOT_FOUND.toString() + HMSprop.HMS_FILENAME.toString());
             throw e;
         } catch (IOException e) {
+            System.err.println(HMSprop.MSG_FILE_USING_ERROR.toString() + HMSprop.HMS_FILENAME.toString());
             throw e;
         }
 
@@ -76,9 +78,14 @@ public class DataLoaderImpl implements DataLoader {
     }
 
     @Override
-    public boolean saveData(Data data) {
+    public boolean saveData() {
 
-        String result = jsonTool.generateJSON(users, hotels);
+        if(Data.getUsers() == null || Data.getHotels() == null) {
+            return false;
+        }
+
+        String result = JsonTool.generateJSON(Data.getUsers(), Data.getHotels());
+        System.out.println(result);
 
         try (FileOutputStream fos = new FileOutputStream(HMSprop.HMS_FILENAME.toString());
              OutputStreamWriter osw = new OutputStreamWriter(fos);
@@ -88,6 +95,7 @@ public class DataLoaderImpl implements DataLoader {
 
         } catch (IOException e) {
             System.err.println(HMSprop.MSG_FILE_USING_ERROR.toString() + HMSprop.HMS_FILENAME.toString());
+//            System.out.println("File could not be saved.");
             return false;
         }
 

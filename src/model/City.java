@@ -5,5 +5,6 @@ package model;
  */
 public enum City {
     KIEV,
-    KHARKOV
+    KHARKOV,
+    ODESSA
 }

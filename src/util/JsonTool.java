@@ -18,18 +18,18 @@ import java.util.Set;
  */
 public class JsonTool {
 
-    Set<Hotel> hotelsSet;
-    Set<User> usersSet;
-
-    public String generateJSON(Set<User> users, Set<Hotel> hotels) {
+    public static String generateJSON(Set<User> users, Set<Hotel> hotels) {
 
         // json will include Set<User> and Set<Hotel>
 
         Gson gson = new Gson();
 
         JsonObject hotelMS_JO = new JsonObject();
+
         JsonObject usersDB_JO = new JsonObject();
+        usersDB_JO.addProperty(HMSprop.USER.toString() + HMSprop.TOTAL.toString(), users.size());
         JsonObject hotelsDB_JO = new JsonObject();
+        hotelsDB_JO.addProperty(HMSprop.HOTEL.toString() + HMSprop.TOTAL.toString(), hotels.size());
 
         users.stream().forEach(user -> {
 
@@ -38,7 +38,7 @@ public class JsonTool {
             user_JO.addProperty(HMSprop.USER_NAME.toString(), user.getName());
             user_JO.addProperty(HMSprop.USER_LOGIN.toString(), user.getLogin());
             user_JO.addProperty(HMSprop.USER_PASSWORD.toString(), user.getPass());
-            usersDB_JO.add(HMSprop.USER.toString(), user_JO);
+            usersDB_JO.add(HMSprop.USER.toString() + "@" + user.hashCode(), user_JO);
 
         });
 
@@ -53,13 +53,14 @@ public class JsonTool {
 
                 JsonObject room_JO = new JsonObject();
 
-                room_JO.addProperty(HMSprop.ROOM_NUMBER.toString(), room.getNumber());
-                room_JO.addProperty(HMSprop.ROOM_USER.toString(), room.getUser().getLogin());
-                room_JO.addProperty(HMSprop.ROOM_AVAILABLE.toString(), room.isAvailable());
+                room_JO.addProperty(HMSprop.ROOM_NUMBER.toString() + room.getNumber()
+                        + HMSprop.ROOM_AVAILABLE.toString(), room.isAvailable());
+                room_JO.addProperty(HMSprop.ROOM_USER.toString(), (room.getUser() != null ? room.getUser().getLogin() : null));
 
-                hotel_JO.add(HMSprop.HOTEL_ROOMS.toString(), room_JO);
+                hotel_JO.add(HMSprop.HOTEL_ROOMS.toString() + hotel.getRooms().hashCode(), room_JO);
 
             });
+            hotelsDB_JO.add(HMSprop.HOTEL.toString()+ "@" + hotel.hashCode(), hotel_JO);
 
         });
 
@@ -69,7 +70,7 @@ public class JsonTool {
         return gson.toJson(hotelMS_JO);
     }
 
-    public void parseJSON(String jsonString) {
+    public static void parseJSON(String jsonString) {
 
         JsonParser jsonParser = new JsonParser();
         JsonElement jsonElement = jsonParser.parse(jsonString);
@@ -77,8 +78,13 @@ public class JsonTool {
 
         Gson gson = new Gson();
 
-        usersSet = gson.fromJson(hotelMS_JO.get(HMSprop.USERS_DB.toString()), new TypeToken<Set<User>>(){}.getType());
-        hotelsSet = gson.fromJson(hotelMS_JO.get(HMSprop.HOTELS_DB.toString()), new TypeToken<Set<Hotel>>(){}.getType());
+        Set<Hotel> hotelsSet;
+        Set<User> usersSet;
+
+        usersSet = gson.fromJson(hotelMS_JO.get(HMSprop.USERS_DB.toString()), new TypeToken<Set<User>>() {
+        }.getType());
+        hotelsSet = gson.fromJson(hotelMS_JO.get(HMSprop.HOTELS_DB.toString()), new TypeToken<Set<Hotel>>() {
+        }.getType());
         //hotelMS_JO.get(HMSprop.HOTELS_DB.toString()).getAsJsonObject().entrySet().stream().forEach();
     }
 
