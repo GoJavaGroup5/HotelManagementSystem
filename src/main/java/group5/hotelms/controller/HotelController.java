@@ -31,7 +31,7 @@ public interface HotelController {
 
     Set<Hotel> findHotelByCity(City city);
 
-    boolean bookRoom(Hotel hotel, Room room, User user);
+    boolean bookRoom(Hotel hotel, int room, User user);
 
     boolean bookCancel(Hotel hotel, Room room);
 }
