@@ -148,7 +148,6 @@ public class HotelControllerImpl implements HotelController {
      * @return boolean result of book canceling
      */
     public boolean bookCancel(Hotel hotel, Room room) {
-
         if (hotel == null || room == null) return false;
         room.setUser(null);
         return true;
