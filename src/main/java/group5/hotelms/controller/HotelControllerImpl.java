@@ -6,8 +6,6 @@ import group5.hotelms.model.City;
 import group5.hotelms.model.Hotel;
 import group5.hotelms.model.Room;
 import group5.hotelms.model.User;
-import group5.hotelms.util.DataLoader;
-import group5.hotelms.util.DataLoaderImpl;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,8 +18,14 @@ public class HotelControllerImpl implements HotelController {
      * @param dataLoader @see DataLoader
      * @param hotelDAO @see HotelDAO
      */
-    DataLoader dataLoader = new DataLoaderImpl();
+
+
     HotelDAO hotelDAO = new HotelDAOImpl();
+
+
+    public Set<Hotel> getAll() {
+        return hotelDAO.getAllHotels();
+    }
 
     /**
      * this method gets Hotel by id

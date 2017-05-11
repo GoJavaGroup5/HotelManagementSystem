@@ -1,6 +1,8 @@
 package group5.hotelms.model;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
 
     private int number;
     private User user;
