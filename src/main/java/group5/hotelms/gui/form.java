@@ -1,7 +1,6 @@
 package group5.hotelms.gui;
 
-import group5.hotelms.util.DataLoader;
-import group5.hotelms.util.DataLoaderImpl;
+import group5.hotelms.db.DataLoader;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -61,7 +60,7 @@ public class form {
     }
 
     public static void main(String[] args) {
-        JFrame jFrame = new JFrame();
+        JFrame jFrame = new JFrame("for1");
         jFrame.setContentPane(new form().mainPanel);
         jFrame.setDefaultCloseOperation(close());
         jFrame.pack();
@@ -69,8 +68,7 @@ public class form {
     }
 
     public static int close() {
-        DataLoader exiter = new DataLoaderImpl();
-        exiter.saveData();
+        DataLoader.save();
         return 3 ;
     }
 }

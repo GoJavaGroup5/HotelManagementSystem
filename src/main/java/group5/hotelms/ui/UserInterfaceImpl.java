@@ -8,7 +8,6 @@ import group5.hotelms.model.City;
 import group5.hotelms.model.Hotel;
 import group5.hotelms.model.Room;
 import group5.hotelms.model.User;
-import group5.hotelms.util.DataLoaderImpl;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -149,7 +148,6 @@ public class UserInterfaceImpl {
     }
 
     class UserHandler {
-        DataLoaderImpl dataLoader = new DataLoaderImpl();
         UserDAOImpl userControl = new UserDAOImpl();
 
 
