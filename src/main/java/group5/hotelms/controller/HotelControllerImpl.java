@@ -134,8 +134,8 @@ public class HotelControllerImpl implements HotelController {
      */
     public boolean bookRoom(Hotel hotel, int roomNumber, User user) {
         if (hotel == null || roomNumber == 0 || user == null) return false;
-        Room room = hotel.getRooms().stream().filter(r->r.getNumber()==roomNumber).findFirst().get();
-        if(!room.isAvailable())return false;
+        Room room = hotel.getRooms().stream().filter(r -> r.getNumber() == roomNumber).findFirst().get();
+        if (!room.isAvailable()) return false;
         room.setUser(user);
         return true;
     }
