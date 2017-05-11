@@ -128,15 +128,15 @@ public class HotelControllerImpl implements HotelController {
      * This metod makes the room booked and ads a User to the Room
      *
      * @param hotel
-     * @param room
+     * @param roomNumber
      * @param user
      * @return the boolean result
      */
-    public boolean bookRoom(Hotel hotel, int room, User user) {
-        if (hotel == null || room == 0 || user == null) return false;
-        hotel.getRooms().stream().filter(r->r.getNumber()==1).findFirst().get().setUser(user);
-
-
+    public boolean bookRoom(Hotel hotel, int roomNumber, User user) {
+        if (hotel == null || roomNumber == 0 || user == null) return false;
+        Room room = hotel.getRooms().stream().filter(r->r.getNumber()==roomNumber).findFirst().get();
+        if(!room.isAvailable())return false;
+        room.setUser(user);
         return true;
     }
 
