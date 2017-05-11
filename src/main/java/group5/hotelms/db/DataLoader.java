@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *@author Андрей
+ * @author Андрей
  */
 
 public class DataLoader {
@@ -19,6 +19,10 @@ public class DataLoader {
     private static HotelController hotels = new HotelControllerImpl();
     private static UserController users = new UserControllerImpl();
 
+    /**
+     * This method is created to geerate initial Data
+     * Actually it generates Set<User> and Set<Hotel>
+     */
     public static void testdata() {
         for (int i = 0; i < 10; i++) {
             users.register(new User("name" + i, "login" + i, "pass" + i));
@@ -30,6 +34,10 @@ public class DataLoader {
         }
     }
 
+    /**
+     * Saves Data to file
+     */
+    //TODO:add user save and read
     public static void save() {
         try {
             final FileOutputStream fos = new FileOutputStream(DIRECTORY
@@ -43,6 +51,9 @@ public class DataLoader {
         }
     }
 
+    /**
+     * Loads Data from file
+     */
     public static void load() {
         try (FileInputStream fin = new FileInputStream(DIRECTORY
                 + "text.txt")) {

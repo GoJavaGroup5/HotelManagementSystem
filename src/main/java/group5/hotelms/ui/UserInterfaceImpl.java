@@ -1,6 +1,4 @@
 package group5.hotelms.ui;
-
-
 import group5.hotelms.controller.HotelController;
 import group5.hotelms.controller.HotelControllerImpl;
 import group5.hotelms.dao.UserDAOImpl;
@@ -13,7 +11,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Set;
 
-
+/**
+ * @author Andrey Ponomarenko
+ * This Class is no longer in use
+ * @deprecated due to GUI been developed
+ */
 public class UserInterfaceImpl {
     UserHandler uh = new UserHandler();
     HotelHandler hh = new HotelHandler();

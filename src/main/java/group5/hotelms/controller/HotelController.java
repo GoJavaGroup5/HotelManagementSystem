@@ -6,6 +6,9 @@ import group5.hotelms.model.Room;
 import group5.hotelms.model.User;
 
 import java.util.Set;
+/**
+ * @author Andey Ponomarenko
+ */
 
 public interface HotelController {
 

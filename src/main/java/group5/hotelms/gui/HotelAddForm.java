@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Set;
 
 /**
- * Created by Андрей on 08.05.2017.
+ *@author Andrey Ponomarenko
  */
 public class HotelAddForm {
 

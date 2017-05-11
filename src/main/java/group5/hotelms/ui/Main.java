@@ -1,13 +1,14 @@
 package group5.hotelms.ui;
 
 /**
- * Created by Андрей on 27.04.2017.
+ * @author Andrey Ponomarenko
+ * This class is created just to show how ui is connected
+ * @deprecated
  */
 public class Main {
     public static void main(String[] args){
 
-       // UserInterfaceImpl ui = new UserInterfaceImpl();
-        System.out.println("1111");
+       UserInterfaceImpl ui = new UserInterfaceImpl();
 
     }
 }

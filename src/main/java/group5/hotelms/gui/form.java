@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Андрей on 07.05.2017.
+ * @author Andrey Ponomarenko
  */
 public class form {
     private JButton addUserButton;
@@ -17,16 +17,21 @@ public class form {
 
     public form() {
         userCombo.addItem("Add User");
-        userCombo.addItem("Edit User");
-        userCombo.addItem("Delete User");
+        userCombo.addItem("Edit/Delete User");
 
         hotelCombo.addItem("Add Hotel");
-        hotelCombo.addItem("Delete Hotel");
+        hotelCombo.addItem("Edit/Delete Hotel");
         hotelCombo.addItem("Hotel Menu");
 
         userCombo.addActionListener(new ActionListener() {
+            /**
+             * Here the user menu selection happens
+             * Add User opens UserAddForm
+             * "Edit/Delete User" opens UserHandler form
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String selectedBook = (String) userCombo.getSelectedItem();
                 if (selectedBook.equals("Add User")) {
                     JFrame jFrame = new JFrame();
@@ -43,8 +48,14 @@ public class form {
                 }
             }
         });
-        hotelCombo.addActionListener(new ActionListener() {
+        /**
+         * Here the hotel menu selection happens
+         * Add Hotel opens HotelAddForm
+         * Edit/Delete Hotel opens HotelHandler form
+         * Hotel Menu is for bookings
+         */
 
+        hotelCombo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedBook = (String) hotelCombo.getSelectedItem();
@@ -67,8 +78,12 @@ public class form {
         jFrame.setVisible(true);
     }
 
+    /**
+     * Here Data saves before exit
+     * @return 3 like EXIT_ON_CLOSE
+     */
     public static int close() {
         DataLoader.save();
-        return 3 ;
+        return 3;
     }
 }

@@ -34,8 +34,6 @@ public class UserControllerImpl implements UserController {
      * @param user
      * @return
      */
-
-
     public boolean remove(User user) {
 
         boolean roomsBookedByUser = hotelDAO.getAllHotels().stream()
@@ -56,7 +54,6 @@ public class UserControllerImpl implements UserController {
      * @param user
      * @return
      */
-
     public boolean edit(User user) {
 
         if (userDAO.getUser(user.getLogin()) != null) {

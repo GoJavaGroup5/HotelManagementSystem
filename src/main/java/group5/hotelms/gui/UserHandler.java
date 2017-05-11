@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Андрей on 08.05.2017.
+ *@author Andrey Ponomarenko
  */
 public class UserHandler {
     public JPanel userHandler;

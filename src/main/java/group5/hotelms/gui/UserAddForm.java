@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Андрей on 07.05.2017.
+ *@author Andrey Ponomarenko
  */
 public class UserAddForm {
     public JPanel userAddForm;
@@ -24,8 +24,6 @@ public class UserAddForm {
             /**
              * Button User Add clicked
              * actually we are adding new user right now
-             *
-             * @param e
              */
             public void actionPerformed(ActionEvent e) {
                 if ((nameFiled.getText().equals("")) || loginField.getText().equals("") || String.valueOf(passwordField.getPassword()).equals("")) {

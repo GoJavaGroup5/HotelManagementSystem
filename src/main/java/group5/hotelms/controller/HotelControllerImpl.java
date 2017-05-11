@@ -9,8 +9,8 @@ import group5.hotelms.model.User;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
 /**
+ * @author Andey Ponomarenko
  * This class is created to get access to Hotels and Rooms
  */
 public class HotelControllerImpl implements HotelController {
@@ -22,7 +22,10 @@ public class HotelControllerImpl implements HotelController {
 
     HotelDAO hotelDAO = new HotelDAOImpl();
 
-
+    /**
+     * this method just returns all Hotels . Uses once at Dataloader
+     * @return All Hotels
+     */
     public Set<Hotel> getAll() {
         return hotelDAO.getAllHotels();
     }
