@@ -1,13 +1,12 @@
 package group5.hotelms.model;
 
 public class Room {
+
     private int number;
-    private boolean available;
     private User user;
 
     public Room(int number) {
         this.number = number;
-        available = true;
     }
 
     public int getNumber() {
@@ -19,7 +18,7 @@ public class Room {
     }
 
     public boolean isAvailable() {
-        return available;
+        return user == null;
     }
 
 
@@ -30,7 +29,6 @@ public class Room {
     public void setUser(User user) {
         //TODO:remove available from gui
         this.user = user;
-        available = user == null;
     }
 
     @Override
@@ -52,8 +50,7 @@ public class Room {
     public String toString() {
         return "Room{" +
                 "number=" + number +
-                ", available=" + available +
-                ", user=" + user +
+                (isAvailable() ? ", available to book" : ", reserved by " + user.getLogin()) +
                 '}';
     }
 }
