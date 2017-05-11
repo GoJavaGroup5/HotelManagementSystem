@@ -1,5 +1,6 @@
 package group5.hotelms.dao;
 
+import group5.hotelms.LoggerExample;
 import group5.hotelms.model.Data;
 import group5.hotelms.model.User;
 
@@ -11,7 +12,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Data.getUsers().add(user);
         } catch (Exception e) {
-            //TODO: Use Logger
+            LoggerExample.log(e);
             //System.err.println("User can not be saved.");
             return false;
         }

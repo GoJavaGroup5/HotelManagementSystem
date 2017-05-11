@@ -1,6 +1,8 @@
 package group5.hotelms.model;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable{
 
     private int number;
     private User user;
@@ -27,7 +29,6 @@ public class Room {
     }
 
     public void setUser(User user) {
-        //TODO:remove available from gui
         this.user = user;
     }
 

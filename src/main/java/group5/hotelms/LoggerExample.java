@@ -11,11 +11,15 @@ public class LoggerExample {
     /**
      * Slf4j logger
      */
-   private static final Logger logger = LoggerFactory.getLogger(LoggerExample.class.getSimpleName());
+    private static final Logger logger = LoggerFactory.getLogger(LoggerExample.class.getSimpleName());
 
-   public static void main(String[] args) {
-      logger.debug("debug msg");
-      logger.info("info msg");
-       logger.error("error msg");
-   }
+    public static void log(Object mess){
+        logger.debug(String.valueOf(mess));
+    }
+
+    public static void main(String[] args) {
+        logger.debug("debug msg");
+        logger.info("info msg");
+        logger.error("error msg");
+    }
 }

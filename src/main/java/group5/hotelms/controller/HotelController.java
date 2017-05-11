@@ -34,4 +34,6 @@ public interface HotelController {
     boolean bookRoom(Hotel hotel, int room, User user);
 
     boolean bookCancel(Hotel hotel, Room room);
+
+    Set<Hotel> getAll();
 }

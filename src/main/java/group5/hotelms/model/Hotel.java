@@ -2,9 +2,10 @@ package group5.hotelms.model;
 
 import group5.hotelms.util.IdGenerator;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Hotel {
+public class Hotel implements Serializable {
     private int id;
     private String name;
     private City city;
