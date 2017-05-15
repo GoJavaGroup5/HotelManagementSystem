@@ -1,94 +1,80 @@
 package group5.hotelms;
 
-import group5.hotelms.controller.HotelController;
-import group5.hotelms.controller.HotelControllerImpl;
-import group5.hotelms.controller.UserController;
-import group5.hotelms.controller.UserControllerImpl;
-import group5.hotelms.dao.HotelDAO;
-import group5.hotelms.dao.HotelDAOImpl;
-import group5.hotelms.dao.UserDAO;
-import group5.hotelms.dao.UserDAOImpl;
-import group5.hotelms.model.City;
-import group5.hotelms.model.Hotel;
-import group5.hotelms.model.Room;
-import group5.hotelms.model.User;
-import group5.hotelms.util.DataLoader;
-import group5.hotelms.util.DataLoaderImpl;
+import group5.hotelms.db.DataLoader;
+import group5.hotelms.gui.form;
+import group5.hotelms.model.Data;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
- * @author voksus on 09.05.2017.
+ * @author voksus 13.05.2017
  */
 public class Main {
-    //TODO:check todo's and proverki
-    //TODO: make tasks in trello from TODO's
 
     public static void main(String[] args) {
 
-        MakeNewDemoData.create1stHotelMS();
+        loadData(false);
+
+        JFrame jFrame = new JFrame();
+        setJFrameParam(jFrame);
 
     }
 
-    /**
-     * @author voksus on 09.05.2017.
-     */
-    private static class MakeNewDemoData {
-
-        static void create1stHotelMS() {
-
-            HotelDAO hotelDAO = new HotelDAOImpl();
-            UserController userController = new UserControllerImpl();
-            UserDAO userDAO = new UserDAOImpl();
-            HotelController hotelController = new HotelControllerImpl();
-
-            userController.register(new User("Vasya", "vas", "123"));
-            userController.register(new User("Galya", "gaga2017", "0000"));
-            userController.register(new User("Osiya", "o0o0o", "oo00"));
-            userController.register(new User("Vetal", "vvvvvvvv", "vv99"));
-            userController.register(new User("Alexa", "al2000", "ja[gje1i4w#nq"));
-            userController.register(new User("Patap", "lPatap", "pPatap"));
-            userController.register(new User("Stasi", "zato4ka", "zszsz777"));
-
-//            System.out.println(Data.getUsers());
-
-            hotelController.add(new Hotel("ABC", City.KIEV, makeNewRooms()));
-            hotelController.add(new Hotel("Ququ", City.KIEV, makeNewRooms()));
-            hotelController.add(new Hotel("Zupelstakinoff", City.KHARKOV, makeNewRooms()));
-            hotelController.add(new Hotel("Plaza", City.KHARKOV, makeNewRooms()));
-            hotelController.add(new Hotel("ABC", City.ODESSA, makeNewRooms()));
-            hotelController.add(new Hotel("Karnaval", City.ODESSA, makeNewRooms()));
-
-//            System.out.println(Data.getHotels());
-
-            hotelController.bookRoom(hotelDAO.getHotelById(1), new Room(1), userDAO.getUser("vas"));
-            hotelController.bookRoom(hotelDAO.getHotelById(2), new Room(1), userDAO.getUser("gaga2017"));
-            hotelController.bookRoom(hotelDAO.getHotelById(3), new Room(1), userDAO.getUser("o0o0o"));
-            hotelController.bookRoom(hotelDAO.getHotelById(4), new Room(1), userDAO.getUser("vvvvvvvv"));
-            hotelController.bookRoom(hotelDAO.getHotelById(5), new Room(1), userDAO.getUser("al2000"));
-            hotelController.bookRoom(hotelDAO.getHotelById(6), new Room(1), userDAO.getUser("lPatap"));
-            hotelController.bookRoom(hotelDAO.getHotelById(1), new Room(1), userDAO.getUser("zato4ka"));
-
-//            System.out.println(Data.getHotels());
-
-            DataLoader dataLoader = new DataLoaderImpl();
-            dataLoader.saveData();
-
+    private static void setJFrameParam(JFrame jFrame) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
-        static Set<Room> makeNewRooms() {
-
-            Set<Room> rooms = new HashSet<>();
-            int defaultRoomsCount = 10;
-
-            for (int i = 0; i < defaultRoomsCount; i++) {
-                rooms.add(new Room(i + 1));
+        jFrame.setTitle("Hotel Management System");
+        jFrame.setContentPane(new form().getMainPanel());
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //saveData());
+        jFrame.setResizable(false);
+        jFrame.setLocation(520, 150);
+        jFrame.pack();
+        jFrame.setVisible(true);
+        jFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+                    /**
+                     * Here the Data saving before close application
+                     */
+                    System.out.println("Saving data.....");
+                    DataLoader.save();
+                    System.out.println("Saving complete!");
+                    System.exit(0);
+                }
             }
+        });
+    }
 
-            return rooms;
+    private static void loadData(boolean show_loaded_data) {
+
+//         1 - load existing data DataLoader.load()
+//         2 - creates a new data DataLoader.testdata()
+        int dataSource = 1;
+
+        switch (dataSource) {
+            case 1:
+                System.out.println("loading.....");
+                DataLoader.load();
+                System.out.println("Loading complete!");
+                break;
+            case 2:
+                System.out.println("Generating new Data....");
+                DataLoader.testdata();
+                System.out.println("Generating complete!");
         }
 
+        if (show_loaded_data) {
+            System.out.println(Data.getHotels());
+            System.out.println(Data.getUsers());
+        }
     }
+
 }
