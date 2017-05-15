@@ -1,7 +1,12 @@
 package group5.hotelms.controller;
 
-
 import group5.hotelms.model.User;
+
+import java.util.Set;
+
+/**
+ * @author Andey Ponomarenko
+ */
 
 public interface UserController {
 
@@ -10,4 +15,9 @@ public interface UserController {
     boolean remove(User user);
 
     boolean edit(User user);
+
+    User getUserByLogin(String login);
+
+    Set<User> getAllUsers();
+
 }

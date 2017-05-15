@@ -6,31 +6,42 @@ import group5.hotelms.model.City;
 import group5.hotelms.model.Hotel;
 import group5.hotelms.model.Room;
 import group5.hotelms.model.User;
-import group5.hotelms.util.DataLoader;
-import group5.hotelms.util.DataLoaderImpl;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * This class is created to get access to Hotels and Rooms
+ * @author Andey Ponomarenko
+ *         This class is created to get access to Hotels and Rooms
  */
 public class HotelControllerImpl implements HotelController {
+
     /**
      * @param dataLoader @see DataLoader
      * @param hotelDAO @see HotelDAO
      */
-    DataLoader dataLoader = new DataLoaderImpl();
     HotelDAO hotelDAO = new HotelDAOImpl();
 
     /**
-     * this method gets Hotel by id
+     * This method just returns all Hotels . Uses once at Dataloader
+     *
+     * @return All Hotels
+     */
+    public Set<Hotel> getAllHotels() {
+        return hotelDAO.getAllHotels();
+    }
+
+    /**
+     * This method gets Hotel by id
      *
      * @param id
      * @return Hotel
      */
-    public Hotel getHotelById(long id) {
-        return hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().get();
+    public Hotel getHotelById(int id) {
+        if (hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().isPresent()) {
+            return hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().get();
+        }
+        return null;
     }
 
     /**
@@ -95,8 +106,15 @@ public class HotelControllerImpl implements HotelController {
      * @return
      */
     public boolean removeRoom(Hotel hotel, Room room) {
-        if (!hotel.getRooms().contains(room)) return false;
-        return hotel.getRooms().remove(room);
+
+        if (hotel.getRooms().contains(room)) {
+            if (room.isAvailable()) {
+                hotel.getRooms().remove(room);
+                return true;
+            }
+        }
+        return false;
+
     }
 
     /**
@@ -108,11 +126,15 @@ public class HotelControllerImpl implements HotelController {
     }
 
     /**
-     * @param name
+     * @param partialName
      * @return Set of Hotels named by name param
      */
-    public Set<Hotel> findHotelByName(String name) {
-        return hotelDAO.getAllHotels().stream().filter(h -> h.getName() == name).collect(Collectors.toSet());
+    public Set<Hotel> findHotelByName(String partialName) {
+        if (hotelDAO.getAllHotels().stream()
+                .filter(hotel -> hotel.getName().contains(partialName)).count() != 0) {
+            return hotelDAO.getAllHotels().stream().filter(hotel -> hotel.getName().contains(partialName)).collect(Collectors.toSet());
+        }
+        return null;
     }
 
     /**
@@ -133,7 +155,7 @@ public class HotelControllerImpl implements HotelController {
      * @return the boolean result
      */
     public boolean bookRoom(Hotel hotel, int roomNumber, User user) {
-        if (hotel == null || roomNumber == 0 || user == null) return false;
+        if (hotel == null || roomNumber < 0 || user == null) return false;
         Room room = hotel.getRooms().stream().filter(r -> r.getNumber() == roomNumber).findFirst().get();
         if (!room.isAvailable()) return false;
         room.setUser(user);
@@ -162,4 +184,5 @@ public class HotelControllerImpl implements HotelController {
     public Set<Room> getBookedRooms(Hotel hotel) {
         return hotel.getRooms().stream().filter(r -> !r.isAvailable()).collect(Collectors.toSet());
     }
+
 }
