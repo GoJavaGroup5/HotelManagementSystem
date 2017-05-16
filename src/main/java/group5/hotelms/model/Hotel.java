@@ -19,7 +19,6 @@ public class Hotel implements Serializable {
     }
 
     /**
-     *
      * @return id
      */
     public int getId() {
@@ -27,7 +26,6 @@ public class Hotel implements Serializable {
     }
 
     /**
-     *
      * @return name
      */
     public String getName() {
@@ -35,7 +33,6 @@ public class Hotel implements Serializable {
     }
 
     /**
-     *
      * @return city
      */
     public City getCity() {
@@ -43,7 +40,6 @@ public class Hotel implements Serializable {
     }
 
     /**
-     *
      * @return rooms
      */
     public Set<Room> getRooms() {
@@ -52,6 +48,7 @@ public class Hotel implements Serializable {
 
     /**
      * Setter for name
+     *
      * @param name
      */
     public void setName(String name) {
@@ -60,6 +57,7 @@ public class Hotel implements Serializable {
 
     /**
      * Setter for city
+     *
      * @param city
      */
     public void setCity(City city) {
@@ -68,6 +66,7 @@ public class Hotel implements Serializable {
 
     /**
      * Setter for rooms
+     *
      * @param rooms
      */
     public void setRooms(Set<Room> rooms) {
@@ -87,24 +86,20 @@ public class Hotel implements Serializable {
         return id == hotel.id;
     }
 
-    /**
-     * Overrides hashcode
-     */
     @Override
     public int hashCode() {
-        return (int)id;
+        return (int) id;
     }
 
-    /**
-     * Overrides toString
-     */
     @Override
     public String toString() {
-        return "Hotel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", city=" + city +
-                ", rooms=" + rooms +
-                '}';
+        String roomNumbers = "";
+        for (Room room : rooms) {
+            roomNumbers += " " + room.getNumber() + (room.isAvailable() ? "+" : "-");
+        }
+        return "ID=" + id +
+                " '" + name + "'" +
+                " in " + city +
+                ". Rooms: " + (roomNumbers.equals("")?" -no rooms-":roomNumbers);
     }
 }

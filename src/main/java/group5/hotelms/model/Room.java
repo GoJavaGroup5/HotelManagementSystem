@@ -1,15 +1,17 @@
 package group5.hotelms.model;
-/**
- * @author Andrey Ponomarenko
- */
 
 import java.io.Serializable;
 
+/**
+ * @author Andrey Ponomarenko
+ */
 public class Room implements Serializable {
+
     /**
      * The number of a room
      */
     private int number;
+
     /**
      * The user Room contains
      */
@@ -96,4 +98,5 @@ public class Room implements Serializable {
                 (isAvailable() ? ", available to book" : ", reserved by " + user.getLogin()) +
                 '}';
     }
+
 }

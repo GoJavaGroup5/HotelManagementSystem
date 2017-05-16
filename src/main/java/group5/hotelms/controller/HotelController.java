@@ -6,13 +6,14 @@ import group5.hotelms.model.Room;
 import group5.hotelms.model.User;
 
 import java.util.Set;
+
 /**
  * @author Andey Ponomarenko
  */
 
 public interface HotelController {
 
-    Hotel getHotelById(long id);
+    Hotel getHotelById(int id);
 
     boolean add(Hotel hotel);
 
@@ -30,7 +31,7 @@ public interface HotelController {
 
     Set<Room> getBookedRooms(Hotel hotel);
 
-    Set<Hotel> findHotelByName(String name);
+    Set<Hotel> findHotelByName(String partialName);
 
     Set<Hotel> findHotelByCity(City city);
 
@@ -38,5 +39,6 @@ public interface HotelController {
 
     boolean bookCancel(Hotel hotel, Room room);
 
-    Set<Hotel> getAll();
+    Set<Hotel> getAllHotels();
+
 }

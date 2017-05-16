@@ -4,10 +4,10 @@ import group5.hotelms.model.Data;
 import group5.hotelms.model.Hotel;
 
 import java.util.Set;
+
 /**
  * @author Andey Ponomarenko
  */
-
 public class HotelDAOImpl implements HotelDAO {
 
     /**
@@ -36,7 +36,7 @@ public class HotelDAOImpl implements HotelDAO {
      * @return Hotel by id
      */
     @Override
-    public Hotel getHotelById(long id) {
+    public Hotel getHotelById(int id) {
         return Data.getHotels().stream().filter(h -> h.getId() == id).findFirst().get();
     }
 
@@ -48,4 +48,5 @@ public class HotelDAOImpl implements HotelDAO {
     public Set<Hotel> getAllHotels() {
         return Data.getHotels();
     }
+
 }

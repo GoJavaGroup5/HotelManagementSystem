@@ -14,8 +14,7 @@ public final class Data {
     /**
      * Created just to deny creating instances
      */
-    private Data() {
-    }
+    private Data() {}
 
     /**
      * @return the Set of Hotels

@@ -8,13 +8,9 @@ import java.util.TreeSet;
  * @author Andey Ponomarenko
  *         This class generates id for Hotels
  */
-
 public final class IdGenerator {
 
-    //private static int idCount = 0;
-
-    private IdGenerator() {
-    }
+    private IdGenerator() {}
 
     /**
      * This method generates ids for Hotel
@@ -23,8 +19,11 @@ public final class IdGenerator {
      */
     public static int generateId() {
         TreeSet<Integer> ts = new TreeSet<Integer>();
+        if (Data.getHotels().isEmpty()) {
+            return 0;
+        }
         Data.getHotels().stream().forEach(h -> ts.add(h.getId()));
         return ts.last() + 1;
-        // return ++idCount;
     }
+
 }

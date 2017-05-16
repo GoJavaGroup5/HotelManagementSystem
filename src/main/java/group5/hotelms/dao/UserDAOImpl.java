@@ -2,7 +2,8 @@ package group5.hotelms.dao;
 
 import group5.hotelms.model.Data;
 import group5.hotelms.model.User;
-import group5.hotelms.util.Log;
+
+import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
     /**
@@ -16,7 +17,6 @@ public class UserDAOImpl implements UserDAO {
         try {
             Data.getUsers().add(user);
         } catch (Exception e) {
-            Log.error(e);
             return false;
         }
         return true;
@@ -41,7 +41,14 @@ public class UserDAOImpl implements UserDAO {
      */
     @Override
     public User getUser(String login) {
+        if (!Data.getUsers().stream().filter(user -> user.getLogin().equals(login)).findFirst().isPresent()) {
+            return null;
+        }
         return Data.getUsers().stream().filter(user -> user.getLogin().equals(login)).findFirst().get();
     }
 
+    @Override
+    public Set<User> getAllUsers() {
+        return Data.getUsers();
+    }
 }
