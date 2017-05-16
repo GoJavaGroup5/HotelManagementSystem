@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 public class Hotel implements Serializable {
+
     private int id;
     private String name;
     private City city;
@@ -88,7 +89,7 @@ public class Hotel implements Serializable {
 
     @Override
     public int hashCode() {
-        return (int) id;
+        return id;
     }
 
     @Override
@@ -102,4 +103,5 @@ public class Hotel implements Serializable {
                 " in " + city +
                 ". Rooms: " + (roomNumbers.equals("")?" -no rooms-":roomNumbers);
     }
+
 }

@@ -8,6 +8,7 @@ import java.util.Set;
  * @author Andey Ponomarenko
  */
 public interface UserDAO {
+
     boolean saveUser(User user);
 
     boolean deleteUser(User user);

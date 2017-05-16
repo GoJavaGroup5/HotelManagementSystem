@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
+ * Start point for application.
  * @author voksus 13.05.2017
  */
 public class Main {

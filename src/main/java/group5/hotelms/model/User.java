@@ -1,6 +1,8 @@
 package group5.hotelms.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 
     private final String login;
     private String name;
@@ -49,9 +51,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "U{ " + name +
-                " , l=" + login +
-                '}';
+        return name +
+                " , login: " + login +
+                " pass: " + pass;
     }
 
     public User get() {

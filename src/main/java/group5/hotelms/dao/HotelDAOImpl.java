@@ -3,6 +3,7 @@ package group5.hotelms.dao;
 import group5.hotelms.model.Data;
 import group5.hotelms.model.Hotel;
 
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
@@ -12,6 +13,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     /**
      * This method is used to add and to edit Hotel
+     *
      * @param hotel
      * @return the result of Hotel Saving
      */
@@ -22,6 +24,7 @@ public class HotelDAOImpl implements HotelDAO {
 
     /**
      * This method deletes Hotel
+     *
      * @param hotel
      * @return the result of deleting Hotel
      */
@@ -32,17 +35,23 @@ public class HotelDAOImpl implements HotelDAO {
 
     /**
      * This method returns Hotel by ID
+     *
      * @param id
      * @return Hotel by id
      */
     @Override
     public Hotel getHotelById(int id) {
-        return Data.getHotels().stream().filter(h -> h.getId() == id).findFirst().get();
+
+        try {
+            return Data.getHotels().stream().filter(h -> h.getId() == id).findFirst().get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+
     }
 
     /**
-     *
-     * @return all Hotels as a Set
+     * @return all Hotels Set<>
      */
     @Override
     public Set<Hotel> getAllHotels() {

@@ -23,7 +23,6 @@ public class Room implements Serializable {
      */
     public Room(int number) {
         this.number = number;
-        available = true;
     }
 
     /**
@@ -64,7 +63,6 @@ public class Room implements Serializable {
      */
     public void setUser(User user) {
         this.user = user;
-        available = user == null;
     }
 
     /**

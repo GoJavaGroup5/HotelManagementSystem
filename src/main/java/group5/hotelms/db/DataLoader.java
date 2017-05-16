@@ -15,7 +15,7 @@ import java.util.*;
 
 public class DataLoader {
 
-    private static final String DIRECTORY = "src/main/java/group5/hotelms/";
+    private static final String DIRECTORY = "src/main/resources/";
     private static final String FILENAME = "DB.obj";
     private static Object[] DB = new Object[2];
 
@@ -77,11 +77,13 @@ public class DataLoader {
             Data.setUsers((Set<User>) DB[1]);
 
         } catch (FileNotFoundException ex) {
-            System.out.println("FileNotFoundException :(");
+            System.err.println("Exception! File not found :(\nNew synthetic database will be created.");
+            testdata();
         } catch (IOException e) {
-            System.err.println("IOException :(");
+            System.err.println("I/O exception! :(\n" +
+                    "Through working with application new data have trying to (re)write a new data in 'DB.obj' with saved data");
         } catch (ClassNotFoundException e) {
-            System.err.println("ClassNotFoundException :(");
+            System.err.println("Internal exception!\nClassNotFoundException :(\nNo database was loaded...");
         }
     }
 

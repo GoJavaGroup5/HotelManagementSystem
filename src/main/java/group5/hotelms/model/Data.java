@@ -17,15 +17,14 @@ public final class Data {
     private Data() {}
 
     /**
-     * @return the Set of Hotels
+     * @return the Set<Hotel>
      */
     public static Set<Hotel> getHotels() {
         return hotelsSet;
     }
 
     /**
-     * Just a Setter for hotels Set
-     *
+     * Setter for hotels Set<Hotel>
      * @param hotels
      */
     public static void setHotels(Set<Hotel> hotels) {
@@ -33,14 +32,14 @@ public final class Data {
     }
 
     /**
-     * @return the Set of Userr
+     * @return the Set<User>
      */
     public static Set<User> getUsers() {
         return usersSet;
     }
 
     /**
-     * Just a Setter for users
+     * Setter for users Set<User>
      *
      * @param users
      */

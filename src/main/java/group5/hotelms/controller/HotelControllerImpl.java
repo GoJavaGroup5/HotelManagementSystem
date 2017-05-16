@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @author Andey Ponomarenko
+ * @author Andey Ponomarenko and voksus
  *         This class is created to get access to Hotels and Rooms
  */
 public class HotelControllerImpl implements HotelController {
@@ -38,10 +38,7 @@ public class HotelControllerImpl implements HotelController {
      * @return Hotel
      */
     public Hotel getHotelById(int id) {
-        if (hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().isPresent()) {
-            return hotelDAO.getAllHotels().stream().filter(h -> h.getId() == id).findFirst().get();
-        }
-        return null;
+        return hotelDAO.getHotelById(id);
     }
 
     /**
